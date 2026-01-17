@@ -19,12 +19,10 @@ function OrderSummary({ deliveryOptions,cart }) {
                         </div>
 
                         <div className="cart-item-details-grid">
-                            <img className="product-image"
-                                src={cartItem.product.image} />
 
                             <CartItemDetails cartItem={cartItem}/>
-
                             <DeliveryOptions deliveryOptions={deliveryOptions} cartItem={cartItem}/>
+                            
                         </div>
                     </div>
                 )
