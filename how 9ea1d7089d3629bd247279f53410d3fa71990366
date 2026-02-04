@@ -1,0 +1,179 @@
+[33mcommit 9ea1d7089d3629bd247279f53410d3fa71990366[m
+Author: AswinCBiju <aswinchkarayil136@gmail.com>
+Date:   Wed Feb 4 23:23:14 2026 +0530
+
+    deleted test files
+
+[1mdiff --git a/src/pages/HomePage/HomePage.test.jsx b/src/pages/HomePage/HomePage.test.jsx[m
+[1mdeleted file mode 100644[m
+[1mindex b76cb4e..0000000[m
+[1m--- a/src/pages/HomePage/HomePage.test.jsx[m
+[1m+++ /dev/null[m
+[36m@@ -1,66 +0,0 @@[m
+[31m-import { it, expect, describe, vi, beforeEach } from 'vitest';[m
+[31m-import { render, screen, within } from '@testing-library/react';[m
+[31m-import { MemoryRouter } from 'react-router';[m
+[31m-import userEvent from '@testing-library/user-event';[m
+[31m-import axios from 'axios';[m
+[31m-import HomePage from './HomePage';[m
+[31m-[m
+[31m-vi.mock('axios');[m
+[31m-[m
+[31m-describe('HomePage Component', () => {[m
+[31m-    let loadCart;[m
+[31m-[m
+[31m-    beforeEach(() => {[m
+[31m-        loadCart = vi.fn();[m
+[31m-[m
+[31m-        axios.get.mockImplementation(async (urlPath) => {[m
+[31m-            if (urlPath == '/api/products') {[m
+[31m-                return {[m
+[31m-                    data: [{[m
+[31m-                        id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",[m
+[31m-                        image: "images/products/athletic-cotton-socks-6-pairs.jpg",[m
+[31m-                        name: "Black and Gray Athletic Cotton Socks - 6 Pairs",[m
+[31m-                        rating: {[m
+[31m-                            stars: 4.5,[m
+[31m-                            count: 87[m
+[31m-                        },[m
+[31m-                        priceCents: 1090,[m
+[31m-                        keywords: ["socks", "sports", "apparel"][m
+[31m-                    },[m
+[31m-                    {[m
+[31m-                        id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",[m
+[31m-                        image: "images/products/intermediate-composite-basketball.jpg",[m
+[31m-                        name: "Intermediate Size Basketball",[m
+[31m-                        rating: {[m
+[31m-                            stars: 4,[m
+[31m-                            count: 127[m
+[31m-                        },[m
+[31m-                        priceCents: 2095,[m
+[31m-                        keywords: ["sports", "basketballs"][m
+[31m-                    }][m
+[31m-                };[m
+[31m-            }[m
+[31m-        });[m
+[31m-    })[m
+[31m-    it('displays the products correctly', async () => {[m
+[31m-        render([m
+[31m-            <MemoryRouter>[m
+[31m-                <HomePage cart={[]} loadCart={loadCart} />[m
+[31m-            </MemoryRouter>[m
+[31m-        )[m
+[31m-[m
+[31m-        const productContainers = await screen.findAllByTestId('product-container');[m
+[31m-[m
+[31m-        expect(productContainers.length).toBe(2);[m
+[31m-[m
+[31m-        expect([m
+[31m-            within(productContainers[0])[m
+[31m-                .getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')[m
+[31m-        ).toBeInTheDocument();[m
+[31m-[m
+[31m-        expect([m
+[31m-            within(productContainers[1])[m
+[31m-                .getByText('Intermediate Size Basketball')[m
+[31m-        ).toBeInTheDocument();[m
+[31m-});[m
+[31m-});[m
+\ No newline at end of file[m
+[1mdiff --git a/src/pages/HomePage/Product.test.jsx b/src/pages/HomePage/Product.test.jsx[m
+[1mdeleted file mode 100644[m
+[1mindex dc92364..0000000[m
+[1m--- a/src/pages/HomePage/Product.test.jsx[m
+[1m+++ /dev/null[m
+[36m@@ -1,72 +0,0 @@[m
+[31m-import { it, expect, describe, vi, beforeEach } from 'vitest';[m
+[31m-import { render, screen } from '@testing-library/react';[m
+[31m-import userEvent from '@testing-library/user-event';[m
+[31m-import axios from 'axios';[m
+[31m-import Product from './Product'[m
+[31m-[m
+[31m-vi.mock('axios');[m
+[31m-[m
+[31m-describe('Product Component', () => {[m
+[31m-    let product;[m
+[31m-[m
+[31m-    let loadCart;[m
+[31m-[m
+[31m-    beforeEach(() => {[m
+[31m-        product = {[m
+[31m-            id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",[m
+[31m-            image: "images/products/athletic-cotton-socks-6-pairs.jpg",[m
+[31m-            name: "Black and Gray Athletic Cotton Socks - 6 Pairs",[m
+[31m-            rating: {[m
+[31m-                stars: 4.5,[m
+[31m-                count: 87[m
+[31m-            },[m
+[31m-            priceCents: 1090,[m
+[31m-            keywords: ["socks", "sports", "apparel"][m
+[31m-        };[m
+[31m-[m
+[31m-        loadCart = vi.fn();[m
+[31m-    });[m
+[31m-[m
+[31m-    it('displays the product details correctly', () => {[m
+[31m-        render(<Product product={product} loadCart={loadCart} />);[m
+[31m-[m
+[31m-        expect([m
+[31m-            screen.getByText('Black and Gray Athletic Cotton Socks - 6 Pairs')[m
+[31m-        ).toBeInTheDocument();[m
+[31m-[m
+[31m-        expect([m
+[31m-            screen.getByText('$10.90')[m
+[31m-        ).toBeInTheDocument();[m
+[31m-[m
+[31m-        expect([m
+[31m-            screen.getByTestId('product-image')[m
+[31m-        ).toHaveAttribute('src', 'images/products/athletic-cotton-socks-6-pairs.jpg');[m
+[31m-[m
+[31m-        expect([m
+[31m-            screen.getByTestId('product-rating-stars')[m
+[31m-        ).toHaveAttribute('src', 'images/ratings/rating-45.png');[m
+[31m-[m
+[31m-        expect([m
+[31m-            screen.getByText('87')[m
+[31m-        ).toBeInTheDocument();[m
+[31m-    });[m
+[31m-[m
+[31m-    it('adds a product to a cart', async () => {[m
+[31m-[m
+[31m-        render(<Product product={product} loadCart={loadCart} />);[m
+[31m-[m
+[31m-        const user = userEvent.setup();[m
+[31m-        const addToCartButton = screen.getByTestId('add-to-cart-button');[m
+[31m-        await user.click(addToCartButton);[m
+[31m-[m
+[31m-        expect(axios.post).toHaveBeenCalledWith([m
+[31m-            '/api/cart-items',[m
+[31m-            {[m
+[31m-                productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',[m
+[31m-                quantity: 1[m
+[31m-            }[m
+[31m-        );[m
+[31m-[m
+[31m-        expect(loadCart).toHaveBeenCalled();[m
+[31m-    })[m
+[31m-});[m
+\ No newline at end of file[m
+[1mdiff --git a/src/utils/money.test.js b/src/utils/money.test.js[m
+[1mdeleted file mode 100644[m
+[1mindex ddcc4c2..0000000[m
+[1m--- a/src/utils/money.test.js[m
+[1m+++ /dev/null[m
+[36m@@ -1,15 +0,0 @@[m
+[31m-import { it, expect, describe } from 'vitest';[m
+[31m-import { formatMoney } from "./money";[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-describe('formatMoney', () => {[m
+[31m-    it('formats 2067 to $20.67', () => {[m
+[31m-        expect(formatMoney(2067)).toBe('$20.67');[m
+[31m-    });[m
+[31m-[m
+[31m-    it('displays 2 decimals', () => {[m
+[31m-        expect(formatMoney(1090)).toBe('$10.90');[m
+[31m-        expect(formatMoney(200)).toBe('$2.00');[m
+[31m-    });[m
+[31m-});[m
